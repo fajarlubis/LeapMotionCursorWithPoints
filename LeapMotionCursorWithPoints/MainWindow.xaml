@@ -13,7 +13,7 @@
             <ColumnDefinition Width="221*"/>
         </Grid.ColumnDefinitions>
         <InkPresenter Name="paintCanvas" Grid.ColumnSpan="3"></InkPresenter>
-        <Label x:Name="Label" Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="37,66,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Label_Copy" Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="35,97,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LabelX" Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="37,66,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LabelY" Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="35,97,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

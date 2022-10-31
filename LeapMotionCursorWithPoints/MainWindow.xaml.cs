@@ -68,8 +68,8 @@ namespace LeapMotionCursorWithPoints
                 var cx = (int)(normalizedPosition.x * 1920);
                 var cy = (int)(1080 - (normalizedPosition.y * 1080));
 
-                Label.Content = cx;
-                Label_Copy.Content = cy;
+                LabelX.Content = "x" + cx;
+                LabelY.Content = "y" + cy;
 
                 int alpha = 255;
                 if (pointable.TouchDistance > 0 && pointable.TouchZone != Pointable.Zone.ZONENONE)
