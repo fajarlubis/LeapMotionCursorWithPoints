@@ -13,6 +13,7 @@ using System.Windows.Ink;
 using Leap;
 using System.Reflection.Emit;
 using LeapMotionCursorWithPoints;
+using System.Reflection;
 
 namespace LeapMotionCursorWithPoints
 {
@@ -22,9 +23,9 @@ namespace LeapMotionCursorWithPoints
     public partial class MainWindow : Window
     {
         Controller leap = new();
-        float windowWidth = 1400;
-        float windowHeight = 800;
-        DrawingAttributes touchIndicator = new DrawingAttributes();
+        float windowWidth = 400;
+        float windowHeight = 300;
+        DrawingAttributes touchIndicator = new();
         public MainWindow()
         {
             InitializeComponent();
@@ -57,17 +58,18 @@ namespace LeapMotionCursorWithPoints
                 }
             }
 
-            for (int g = 0; g < frame.Gestures().Count; g++)
-            {
-                Console.WriteLine(frame.Gestures()[g].ToString());
-            }
-
             foreach (Pointable pointable in leap.Frame().Pointables)
             {
                 Leap.Vector normalizedPosition =
                     interactionBox.NormalizePoint(pointable.StabilizedTipPosition);
                 float tx = normalizedPosition.x * windowWidth;
                 float ty = windowHeight - normalizedPosition.y * windowHeight;
+
+                var cx = (int)(normalizedPosition.x * 1920);
+                var cy = (int)(1080 - (normalizedPosition.y * 1080));
+
+                Label.Content = cx;
+                Label_Copy.Content = cy;
 
                 int alpha = 255;
                 if (pointable.TouchDistance > 0 && pointable.TouchZone != Pointable.Zone.ZONENONE)
@@ -89,6 +91,8 @@ namespace LeapMotionCursorWithPoints
                 StylusPointCollection tips = new(new StylusPoint[] { touchPoint });
                 Stroke touchStroke = new(tips, touchIndicator);
                 paintCanvas.Strokes.Add(touchStroke);
+
+                MouseCursor.MoveCursor(cx, cy);
             }
         }
 
